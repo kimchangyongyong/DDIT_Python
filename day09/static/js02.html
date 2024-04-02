@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#ita,#itb,#itc{
+	width: 30px;
+}
+</style>
+<script type="text/javascript">
+function fn_btn() {
+	var a = document.getElementById("ita");
+	var b = document.getElementById("itb");
+	var c = document.getElementById("itc");
+	
+	var aa = parseInt(a.value);
+	var bb = parseInt(b.value);
+	
+	c.value= aa+bb;
+	
+}
+
+</script>
+</head>
+<body>
+<input type="text" id="ita"/>
++
+<input type="text" id="itb"/>
+<input type="button" value="=" onclick="fn_btn()"/>
+<input type="text" id="itc"/>
+
+</body>
+</html>

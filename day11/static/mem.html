@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<style>
+#mem_id, #mem_name, #mobile, #email {
+	width: 50px;
+}
+</style>
+<script type="text/javascript">
+function fn_list() {
+    $.ajax({
+        type: 'POST',
+        url: '/mem_list',
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function(res) {
+            var list = res.list;
+            var txt = "";
+
+            for (var i = 0; i < list.length; i++) {
+                var e = list[i];
+
+                txt += `
+                    <tr>
+                        <td><a href="javascript:fn_one('${e.mem_id}')">${e.mem_id}</td>
+                        <td>${e.mem_name}</td>
+                        <td>${e.mobile}</td>
+                        <td>${e.email}</td>
+                    </tr>
+                `;
+            }
+            $("#my_tbody").html(txt);
+        }
+    });
+}
+function fn_one(mem_id){
+	  var params = {
+	            'mem_id': mem_id
+	        }
+	   $.ajax({
+	        type: 'POST',
+	        url: '/mem_one',
+	        data: JSON.stringify(params),
+	        dataType: 'json',
+	        contentType: 'application/json',
+	        success: function(res) {
+	        var vo = res.vo
+
+	        $("#mem_id").val(vo.mem_id);
+	      	$("#mem_name").val(vo.mem_name);
+	      	$("#mobile").val(vo.mobile);
+	      	$("#email").val(vo.email);
+		
+	        }
+	    });	
+}
+
+function fn_add(){
+	  var params = {
+	            'mem_id': $('#mem_id').val(),
+	            'mem_name' :$('#mem_name').val(),
+	            'mobile' : $('#mobile').val(),
+	            'email' : $('#email').val()
+	            
+	        }
+	   $.ajax({
+	        type: 'POST',
+	        url: '/mem_add',
+	        data: JSON.stringify(params),
+	        dataType: 'json',
+	        contentType: 'application/json',
+	        success: function(res) {
+	        var cnt = res.cnt
+	        if(cnt==1){
+	        	alert("정상적으로 추가되었습니다.");
+	        	fn_list();
+	        $("#mem_id").val("");
+	      	$("#mem_name").val("");
+	      	$("#mobile").val("");
+	      	$("#email").val("");
+	       }else{
+	    	   alert("추가 중에 문제가 발생했습니다.")
+	       }
+
+		
+	        }
+	    });
+}
+function fn_mod(){
+	  var params = {
+	            'mem_id': $('#mem_id').val(),
+	            'mem_name' :$('#mem_name').val(),
+	            'mobile' : $('#mobile').val(),
+	            'email' : $('#email').val()
+	            
+	        }
+	   $.ajax({
+	        type: 'POST',
+	        url: '/mem_mod',
+	        data: JSON.stringify(params),
+	        dataType: 'json',
+	        contentType: 'application/json',
+	        success: function(res) {
+	        var cnt = res.cnt
+	        if(cnt==1){
+	        	alert("정상적으로 수정되었습니다.");
+	        	fn_list();
+	        $("#mem_id").val("");
+	      	$("#mem_name").val("");
+	      	$("#mobile").val("");
+	      	$("#email").val("");
+	       }else{
+	    	   alert("수정 중에 문제가 발생했습니다.")
+	       }
+
+		
+	        }
+	    });	
+}
+function fn_del(){
+	  var params = {
+			  'mem_id': $('#mem_id').val()      
+	        }
+	   $.ajax({
+	        type: 'POST',
+	        url: '/mem_del',
+	        data: JSON.stringify(params),
+	        dataType: 'json',
+	        contentType: 'application/json',
+	        success: function(res) {
+	        var cnt = res.cnt
+	        if(cnt==1){
+	        	alert("정상적으로 삭제되었습니다.");
+	        	fn_list();
+	        $("#mem_id").val("");
+	      	$("#mem_name").val("");
+	      	$("#mobile").val("");
+	      	$("#email").val("");
+	       }else{
+	    	   alert("삭제 중에 문제가 발생했습니다.")
+	    	   console.log(cnt);
+	       }
+
+		
+	        }
+	    });
+	  
+
+	
+}
+$(document).ready(function() {
+	fn_list();
+	$("#btn_add").on("click", function(event) {
+		fn_add();
+	});
+	$("#btn_mod").on("click", function(event) {
+		fn_mod();
+	});
+	$("#btn_del").on("click", function(event) {
+		fn_del();
+	});
+
+});
+</script>
+</head>
+<body>
+	<table border="1px">
+		<thead>
+			<tr>
+				<td>사번</td>
+				<td>이름</td>
+				<td>번호</td>
+				<td>메일</td>
+			</tr>
+		</thead>
+		<tbody id="my_tbody">
+			<tr>
+				<td colspan="4">검색된 데이터가 없습니다.</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<table border="1px">
+		<tr>
+			<td>사번</td>
+			<td><input type="text" id="mem_id" /></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" id="mem_name" /></td>
+		</tr>
+		<tr>
+			<td>번호</td>
+			<td><input type="text" id="mobile" /></td>
+		</tr>
+		<tr>
+			<td>메일</td>
+			<td><input type="text" id="email" /></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<input type="button" value="추가" id="btn_add" />
+			<input type="button" value="수정" id="btn_mod" /> 
+			<input type="button" value="삭제" id="btn_del" /></td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EMP_ADD</title>
+    <script type="text/javascript">
+        function fn_add_act() {
+        	document.frm.submit();
+        }
+    </script>
+</head>
+<body>
+    <form name="frm" action="emp_add_act" method="post">
+        <table border="1px">
+            <tr>
+                <td>사번</td>
+                <td>
+                    <input type="text" name="e_id"> 
+                </td>
+            </tr>
+            <tr>
+                <td>이름</td>
+                <td>
+                    <input type="text" name="e_name"> 
+                </td>
+            </tr>
+            <tr>
+                <td>성별</td>
+                <td>
+                    <input type="text" name="gen"> 
+                </td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td>
+                    <input type="text" name="addr"> 
+                </td>
+            </tr>
+            <tr>
+            </tr>
+        </table>
+                <td colspan="2">
+                    <input type="button" value="추가" onclick="fn_add_act()" />
+                </td>
+    </form>
+</body>
+</html>

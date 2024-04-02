@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#it{
+	text-align: right;
+}
+</style>
+<script type="text/javascript">
+var num = "";
+	function fn_num(value) {
+		var num_obj = document.getElementById("it");
+		num += value;
+		num_obj.value = num;
+		}
+	function fn_call(){
+		var a = document.getElementById("it").value;
+				
+		alert(a+"\n calling...")
+	}
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td colspan="3">
+				<input type="text" id="it" />
+			</td>
+		</tr>
+		<tr>
+			<td><input type="button" class="btn" value="1" onclick="fn_num(this.value)"/></td>
+			<td><input type="button" class="btn" value="2" onclick="fn_num(this.value)" /></td>
+			<td><input type="button" class="btn" value="3" onclick="fn_num(this.value)" /></td>
+		</tr>
+		<tr>
+			<td><input type="button" class="btn" value="4" onclick="fn_num(this.value)" /></td>
+			<td><input type="button" class="btn" value="5" onclick="fn_num(this.value)" /></td>
+			<td><input type="button" class="btn" value="6" onclick="fn_num(this.value)" /></td>
+		</tr>
+		<tr>
+			<td><input type="button" class="btn" value="7" onclick="fn_num(this.value)" /></td>
+			<td><input type="button" class="btn" value="8" onclick="fn_num(this.value)" /></td>
+			<td><input type="button" class="btn" value="9" onclick="fn_num(this.value)" /></td>
+		</tr>
+		<tr>
+			<td><input type="button" class="btn" value="0" onclick="fn_num(this.value)" /></td>
+			<td colspan="2">
+				<input type="button" id="btn_call" value="☎" onclick="fn_call()" />
+			</td>
+		</tr>
+		
+	</table>
+</body>
+</html>

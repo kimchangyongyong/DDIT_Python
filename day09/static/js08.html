@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#it_mine, #it_com, #it_result {
+	width: 30px;
+}
+</style>
+<script type="text/javascript">
+	function fn_btn() {
+		var rnd = parseInt(Math.random() * 3) + 1;
+		var com_obj = document.getElementById("itCom");
+		var mine_obj = document.getElementById("itMine");
+		var res_obj = document.getElementById("itResult");
+
+		var me = 0;
+		var rul = 0;
+		var res = res_obj.value;
+		var com = com_obj.value;
+		var mine = mine_obj.value;
+
+		if (rnd == 1) {
+			com = "가위";
+		} else if (rnd == 2) {
+			com = "바위";
+		} else {
+			com = "보";
+		}
+
+		if (mine == "가위") {
+			me = 1;
+		} else if (mine == "바위") {
+			me = 2;
+		} else {
+			me = 3;
+		}
+
+		rul = rnd - me;
+
+		if (rul == 0) {
+			res = "비겼습니다";
+		} else if (rul == -1 || rul == 2) {
+			res = "승리했습니다";
+		} else {
+			res = "패배하였습니다.";
+		}
+
+		res_obj.value = res;
+		com_obj.value = com;
+
+	}
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td>나:</td>
+			<td><input type="text" id="itMine"></td>
+		</tr>
+		<tr>
+			<td>컴:</td>
+			<td><input type="text" id="itCom"></td>
+		</tr>
+		<tr>
+			<td>결과:</td>
+			<td><input type="text" id="itResult"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="button" value="게임하기"
+				onclick="fn_btn()" /></td>
+		</tr>
+	</table>
+</body>
+</html>

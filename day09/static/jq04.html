@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#it_mine, #it_com, #it_result {
+	width: 30px;
+}
+</style>
+<script src="jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	function fn_btn() {
+		var ran = Math.random() * 1;
+		var me = $("#it_mine").val();
+		var com = $("#it_com").val();
+		var res = $("#it_result").val();
+
+		if (ran > 0.5) {
+			com = "홀";
+		} else {
+			com = "짝";
+		}
+
+		if (com == me) {
+			res = "승리";
+		} else {
+			res = "패배";
+		}
+
+		$("#it_com").val(com);
+		$("#it_result").val(res);
+	}
+
+	$(document).ready(function() {
+		$("#btn").on("click", function(event) {
+			fn_btn();
+		});
+	});
+	
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td>나:</td>
+			<td><input type="text" id="it_mine"></td>
+		</tr>
+		<tr>
+			<td>컴:</td>
+			<td><input type="text" id="it_com"></td>
+		</tr>
+		<tr>
+			<td>결과:</td>
+			<td><input type="text" id="it_result"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="button" value="게임하기" id="btn" /></td>
+		</tr>
+	</table>
+</body>
+</html>

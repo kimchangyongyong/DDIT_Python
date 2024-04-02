@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#it_mine, #it_com, #it_result {
+	width: 30px;
+}
+</style>
+<script type="text/javascript">
+	function fn_btn() {
+		var ran = Math.random() * 1;
+		// 		var me = document.getElementById("it_mine").value;
+		// 		var com = document.getElementById("it_com");
+		// 		var res = document.getElementById("it_result");
+		var obj_me = document.querySelector("#it_mine");
+		var obj_com = document.querySelector("#it_com");
+		var obj_res = document.querySelector("#it_result");
+
+		var me = obj_me.value;
+		var com = "";
+		var res = "";
+		
+		if (ran > 0.5) {
+			com = "홀";
+		} else {
+			com = "짝";
+		}
+
+
+		if (com == me) {
+			res = "승리";
+		} else {
+			res = "패배";
+		}
+
+		obj_com.value = com;
+		obj_res.value = res;
+	}
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td>나:</td>
+			<td><input type="text" id="it_mine"></td>
+		</tr>
+		<tr>
+			<td>컴:</td>
+			<td><input type="text" id="it_com"></td>
+		</tr>
+		<tr>
+			<td>결과:</td>
+			<td><input type="text" id="it_result"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="button" value="게임하기"
+				onclick="fn_btn()" /></td>
+		</tr>
+	</table>
+</body>
+</html>
